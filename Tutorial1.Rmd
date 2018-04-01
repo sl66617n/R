@@ -1,0 +1,78 @@
+---
+title: "Tutorial1"
+author: "Sijia Liang"
+date: "2/1/2018"
+output: html_document
+---
+#upload the housing data
+```{r}
+house=read.table("/Users/sijialiang/Desktop/Tutorial/housing.txt", header=T)
+house
+row.names(house)
+head(house)
+house$Apartment
+house[1] #extract first column
+#treat the data as a matrix
+house[1:4,] #extract first 4 rows of data
+house[house$Apartment>1000,][-3,]#third row is deleted
+log(house[1]) #natural logarithm
+log10(house[1])#common log
+attach(house)
+Apartment
+detach(house)
+# cbind() add columns to data frames
+lh=cbind(house,log(house[1]))
+colnames(lh)[3]="LogApt"
+#rbind() changing row
+```
+
+```{r}
+sort(house$Apartment)
+sort(house$Apartment, decreasing=FALSE)
+order(house$Apartment)
+house[order(house$Apartment),]
+house[order(-house$Apartment),]
+sapply(house,mean) #apply mean to each column in this dataset
+sapply(house,sd)
+first=data.frame(name=c("Charles", "Bill", "Amy", "Fred"), age=c(15,25,NA,22))
+second=data.frame(name=c("Charles","George", "Amy", "Fred"),age=c(61,65,60,67))
+m1=merge(first,second,by="name")
+m1
+complete.cases(m1)
+m1[complete.cases(m1),]
+list=c(1,2,4,5,2,34,5)
+list
+duplicated(list)
+list[!duplicated(list)]
+```
+
+```{r}
+sqrt(2)
+addA=function(x) x+A
+A=4
+addA(2)
+addTwo=function(x){
+  first= x+A
+  second= 2*x
+  c(first,second)
+}
+A=5; addTwo(6)
+```
+```{r}
+spacing = function(x){
+  n=length(x)
+  if (n<=1) return(NA) #undefined if x is empty or a scalar
+  sortx=sort(x) #sorted value of x
+  sortx[-1]-sortx[-n] #return spacings
+}
+z=sample(25,5)
+z
+spacing(z)
+
+#how can we describe the distribution of the correlation from  normally distributed samples?
+
+#install.packages('mvtnorm') #correlated normal random variables
+library(mvtnorm)
+rmvnorm(5, mean=c(0,0),sigma=matrix(c(1,0.8,0.8,1),2,2)
+
+```
